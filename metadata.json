@@ -1,0 +1,8 @@
+{
+  "name": "Vivid Spark",
+  "description": "Vivid Spark - Professional portfolio, beauty wiki, and affiliate shop by LAPT certified makeup artist Karshini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

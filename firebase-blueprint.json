@@ -1,0 +1,136 @@
+{
+  "entities": {
+    "Setting": {
+      "title": "Global Settings",
+      "description": "Global configuration for Vivid Spark website.",
+      "type": "object",
+      "properties": {
+        "heroTitle": { "type": "string" },
+        "heroTagline": { "type": "string" },
+        "heroDescription": { "type": "string" },
+        "storyNarrative": { "type": "string" },
+        "storyNarrativeExtended": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "instagramHandle": { "type": "string" },
+        "emailAddress": { "type": "string" },
+        "serviceArea": { "type": "string" }
+      },
+      "required": ["heroTitle", "heroTagline", "whatsappNumber"]
+    },
+    "PortfolioItem": {
+      "title": "Portfolio Item",
+      "description": "A portfolio image showcasing makeup/artistic work.",
+      "type": "object",
+      "properties": {
+        "imageUrl": { "type": "string" },
+        "caption": { "type": "string" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["imageUrl", "caption", "category"]
+    },
+    "ServiceItem": {
+      "title": "Service",
+      "description": "A makeup or styling service offered by Vivid Spark.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "startingPrice": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "features": { "type": "string" }
+      },
+      "required": ["name", "startingPrice", "category"]
+    },
+    "TestimonialItem": {
+      "title": "Testimonial",
+      "description": "Client feedback and rating for services rendered.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "quote": { "type": "string" },
+        "rating": { "type": "integer" },
+        "occasion": { "type": "string" },
+        "date": { "type": "string" }
+      },
+      "required": ["name", "quote", "rating"]
+    },
+    "FAQItem": {
+      "title": "FAQ Item",
+      "description": "A booking or service question and answer pair.",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "order": { "type": "integer" }
+      },
+      "required": ["question", "answer"]
+    },
+    "WikiItem": {
+      "title": "Wiki Article",
+      "description": "An educational guide or routine regarding beauty, makeup, or skincare.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastUpdated": { "type": "string" },
+        "helpfulYes": { "type": "integer" },
+        "helpfulNo": { "type": "integer" }
+      },
+      "required": ["title", "slug", "category", "summary", "content"]
+    },
+    "ShopItem": {
+      "title": "Shop Item",
+      "description": "An affiliate skincare or makeup product recommended by Karshini.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "string" },
+        "affiliateLink": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "imageUrl", "description", "category", "affiliateLink"]
+    }
+  },
+  "firestore": {
+    "settings": {
+      "schema": "Setting",
+      "description": "Global website configurations and contact options."
+    },
+    "portfolio": {
+      "schema": "PortfolioItem",
+      "description": "Images and descriptions of makeup work."
+    },
+    "services": {
+      "schema": "ServiceItem",
+      "description": "Offered services with starting prices."
+    },
+    "testimonials": {
+      "schema": "TestimonialItem",
+      "description": "Client reviews and testimonials."
+    },
+    "faq": {
+      "schema": "FAQItem",
+      "description": "Frequently asked questions and answers."
+    },
+    "wiki": {
+      "schema": "WikiItem",
+      "description": "Educational articles and routines."
+    },
+    "shop": {
+      "schema": "ShopItem",
+      "description": "Affiliate makeup and beauty recommendations."
+    }
+  }
+}
