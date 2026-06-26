@@ -8,6 +8,16 @@ import {
   updateDoc
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { 
+  isSanityConfigured,
+  getSanitySettings,
+  getSanityServices,
+  getSanityPortfolio,
+  getSanityTestimonials,
+  getSanityFAQs,
+  getSanityWiki,
+  getSanityShop
+} from "./sanity";
 
 export interface GlobalSettings {
   heroTitle: string;
@@ -451,6 +461,10 @@ export const fallbackShop: ShopItem[] = [
 
 // Helper functions to get data with Firestore read + local fallback
 export async function getSettings(): Promise<GlobalSettings> {
+  if (isSanityConfigured()) {
+    const data = await getSanitySettings();
+    if (data) return data;
+  }
   try {
     const sDoc = await getDoc(doc(db, "settings", "global"));
     if (sDoc.exists()) {
@@ -467,6 +481,10 @@ export async function saveSettings(settings: GlobalSettings): Promise<void> {
 }
 
 export async function getServices(): Promise<ServiceItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityServices();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "services"));
     if (!qSnap.empty) {
@@ -491,6 +509,10 @@ export async function deleteService(id: string): Promise<void> {
 }
 
 export async function getPortfolio(): Promise<PortfolioItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityPortfolio();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "portfolio"));
     if (!qSnap.empty) {
@@ -515,6 +537,10 @@ export async function deletePortfolioItem(id: string): Promise<void> {
 }
 
 export async function getTestimonials(): Promise<TestimonialItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityTestimonials();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "testimonials"));
     if (!qSnap.empty) {
@@ -539,6 +565,10 @@ export async function deleteTestimonial(id: string): Promise<void> {
 }
 
 export async function getFAQs(): Promise<FAQItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityFAQs();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "faq"));
     if (!qSnap.empty) {
@@ -563,6 +593,10 @@ export async function deleteFAQ(id: string): Promise<void> {
 }
 
 export async function getWiki(): Promise<WikiItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityWiki();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "wiki"));
     if (!qSnap.empty) {
@@ -587,6 +621,10 @@ export async function deleteWikiItem(id: string): Promise<void> {
 }
 
 export async function getShop(): Promise<ShopItem[]> {
+  if (isSanityConfigured()) {
+    const data = await getSanityShop();
+    if (data) return data;
+  }
   try {
     const qSnap = await getDocs(collection(db, "shop"));
     if (!qSnap.empty) {
