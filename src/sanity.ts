@@ -12,7 +12,7 @@ import {
 
 // 1. Retrieve Sanity configuration from environment variables
 const metaEnv = (import.meta as any).env || {};
-const projectId = metaEnv.VITE_SANITY_PROJECT_ID || "";
+const projectId = metaEnv.VITE_SANITY_PROJECT_ID || "0dtesla7";
 const dataset = metaEnv.VITE_SANITY_DATASET || "production";
 const apiVersion = metaEnv.VITE_SANITY_API_VERSION || "2023-05-03";
 const token = metaEnv.VITE_SANITY_TOKEN || ""; // Optional write/preview token
@@ -71,7 +71,7 @@ export async function getSanitySettings(): Promise<GlobalSettings | null> {
       serviceArea: data.serviceArea || "",
     };
   } catch (e) {
-    console.error("Failed to fetch globalSettings from Sanity:", e);
+    console.warn("Unable to fetch globalSettings from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -95,7 +95,7 @@ export async function getSanityServices(): Promise<ServiceItem[] | null> {
         : (item.features || ""),
     }));
   } catch (e) {
-    console.error("Failed to fetch serviceItems from Sanity:", e);
+    console.warn("Unable to fetch serviceItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -115,7 +115,7 @@ export async function getSanityPortfolio(): Promise<PortfolioItem[] | null> {
       createdAt: item.createdAt || item._createdAt || "",
     }));
   } catch (e) {
-    console.error("Failed to fetch portfolioItems from Sanity:", e);
+    console.warn("Unable to fetch portfolioItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -136,7 +136,7 @@ export async function getSanityTestimonials(): Promise<TestimonialItem[] | null>
       date: item.date || item._createdAt || "",
     }));
   } catch (e) {
-    console.error("Failed to fetch testimonialItems from Sanity:", e);
+    console.warn("Unable to fetch testimonialItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -155,7 +155,7 @@ export async function getSanityFAQs(): Promise<FAQItem[] | null> {
       order: typeof item.order === "number" ? item.order : 0,
     }));
   } catch (e) {
-    console.error("Failed to fetch faqItems from Sanity:", e);
+    console.warn("Unable to fetch faqItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -181,7 +181,7 @@ export async function getSanityWiki(): Promise<WikiItem[] | null> {
       helpfulNo: typeof item.helpfulNo === "number" ? item.helpfulNo : 0,
     }));
   } catch (e) {
-    console.error("Failed to fetch wikiItems from Sanity:", e);
+    console.warn("Unable to fetch wikiItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }
@@ -205,7 +205,7 @@ export async function getSanityShop(): Promise<ShopItem[] | null> {
       createdAt: item.createdAt || item._createdAt || "",
     }));
   } catch (e) {
-    console.error("Failed to fetch shopItems from Sanity:", e);
+    console.warn("Unable to fetch shopItems from Sanity (falling back to database/local):", e instanceof Error ? e.message : e);
     return null;
   }
 }

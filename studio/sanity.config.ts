@@ -8,7 +8,7 @@ export default defineConfig({
   title: "VividSpark CMS Studio",
 
   // These will be supplied by environment variables on Vercel
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID || "your_project_id",
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || "0dtesla7",
   dataset: process.env.SANITY_STUDIO_DATASET || "production",
 
   plugins: [

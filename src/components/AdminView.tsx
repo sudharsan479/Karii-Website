@@ -63,7 +63,7 @@ interface AdminViewProps {
   onRefreshData: () => Promise<void>;
 }
 
-type AdminTab = "settings" | "portfolio" | "services" | "testimonials" | "faqs" | "wiki" | "shop" | "database";
+type AdminTab = "settings" | "portfolio" | "services" | "testimonials" | "faqs" | "wiki" | "shop" | "database" | "sanity";
 
 export default function AdminView({
   settings,
@@ -717,6 +717,7 @@ export default function AdminView({
             { id: "wiki", label: "Wiki Guides", icon: BookOpen },
             { id: "shop", label: "Affiliate Products", icon: ShoppingBag },
             { id: "database", label: "Database Seed", icon: Database },
+            { id: "sanity", label: "Sanity Integration", icon: Sparkles },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -1756,6 +1757,108 @@ export default function AdminView({
                 <p className="text-[11px] text-navy-300 leading-relaxed">
                   <span className="font-semibold text-gold-300">Architecture Information:</span> All reads from other screens automatically fall back to local in-memory records if Firestore is blank, keeping your preview flawless. Once seeded, the site loads data fully in real-time from Firestore!
                 </p>
+              </div>
+            </div>
+          )}
+
+          {/* ACTIVE PANEL 9: SANITY INTEGRATION */}
+          {activeTab === "sanity" && (
+            <div className="space-y-6 text-left">
+              <h3 className="font-serif text-xl font-bold text-gold-200 pb-3 border-b border-navy-800">
+                Sanity CMS Integration & Vercel Deployment
+              </h3>
+
+              <div className="p-4 bg-gold-500/5 border border-gold-500/10 rounded-2xl space-y-2">
+                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gold-400">
+                  Current Sanity Studio Configuration
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                  <div className="space-y-1">
+                    <span className="text-navy-400 font-mono">Project ID:</span>
+                    <span className="ml-2 px-2 py-0.5 bg-navy-950 rounded border border-gold-500/10 font-mono text-gold-300">0dtesla7</span>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-navy-400 font-mono">Dataset:</span>
+                    <span className="ml-2 px-2 py-0.5 bg-navy-950 rounded border border-gold-500/10 font-mono text-gold-300">production</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {/* Step 1: CORS Origins */}
+                <div className="p-5 bg-navy-950/50 border border-gold-500/10 rounded-2xl space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-gold-500/10 text-gold-400 rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gold-300">
+                      Fix connection / CORS Errors
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    If you see error banners or logs starting with <code className="bg-navy-950 px-1 py-0.5 text-rose-400 rounded">"Failed to fetch from Sanity"</code>, this is because Sanity blocks requests from unauthorized domains by default.
+                  </p>
+                  <p className="text-[11px] text-navy-300 leading-relaxed font-semibold">
+                    Follow these 3 simple steps to authorize your domains:
+                  </p>
+                  <ul className="list-decimal pl-5 text-[11px] text-navy-300 space-y-1.5">
+                    <li>Go to the <a href="https://www.sanity.io/manage" target="_blank" rel="noreferrer" className="text-gold-400 hover:underline">Sanity Manage Console (sanity.io/manage)</a> and sign in.</li>
+                    <li>Select your project (<code className="bg-navy-950 px-1 text-gold-300">0dtesla7</code>).</li>
+                    <li>Navigate to the <span className="font-semibold text-gold-200">API</span> tab, find <span className="font-semibold text-gold-200">CORS Origins</span>, click <span className="font-bold text-gold-300">"Add CORS Origin"</span>, and add these URLs (check "Allow credentials"):</li>
+                  </ul>
+                  <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 space-y-1 font-mono text-[10px] text-navy-300">
+                    <div>• Local Testing: <span className="text-gold-400">http://localhost:3000</span></div>
+                    <div>• Dev Sandbox: <span className="text-gold-400">https://ais-dev-g7kqgf3ffh5kculqzwrb3t-1056778540653.asia-southeast1.run.app</span></div>
+                    <div>• Share Preview: <span className="text-gold-400">https://ais-pre-g7kqgf3ffh5kculqzwrb3t-1056778540653.asia-southeast1.run.app</span></div>
+                    <div>• Live Website: <span className="text-gold-400">https://your-website.vercel.app</span> (Replace with your actual Vercel URL)</div>
+                  </div>
+                </div>
+
+                {/* Step 2: Zero Local Runs */}
+                <div className="p-5 bg-navy-950/50 border border-gold-500/10 rounded-2xl space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-gold-500/10 text-gold-400 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gold-300">
+                      No Local Runs: Host your CMS on Sanity's Cloud
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    You do not need to run Sanity locally! Sanity provides completely free, high-performance web hosting for your Sanity Studio on their global cloud CDN.
+                  </p>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    To deploy your CMS Studio to the web with zero server setup, open your local terminal, navigate to the <code className="bg-navy-950 px-1 text-gold-300">/studio</code> folder, and run:
+                  </p>
+                  <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 font-mono text-xs text-gold-400">
+                    npx sanity deploy
+                  </div>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    Enter a subdomain (e.g. <code className="bg-navy-950 px-1 text-gold-300">vividspark</code>) and your CMS will immediately compile and launch live at <span className="text-gold-300 font-semibold font-mono">https://vividspark.sanity.studio</span>. You can log in and manage your content securely from any browser, on any device!
+                  </p>
+                </div>
+
+                {/* Step 3: Vercel Connection */}
+                <div className="p-5 bg-navy-950/50 border border-gold-500/10 rounded-2xl space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 bg-gold-500/10 text-gold-400 rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gold-300">
+                      Connect your website on Vercel
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    To connect your main front-end website hosted on Vercel to your Sanity CMS, just add these environment variables to your Vercel project settings:
+                  </p>
+                  <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 space-y-2 font-mono text-[10px] text-navy-300">
+                    <div>
+                      <span className="text-navy-400">Key:</span> <span className="text-gold-300">VITE_SANITY_PROJECT_ID</span> <br />
+                      <span className="text-navy-400">Value:</span> <span className="text-gold-400">0dtesla7</span>
+                    </div>
+                    <div className="pt-1.5 border-t border-navy-900">
+                      <span className="text-navy-400">Key:</span> <span className="text-gold-300">VITE_SANITY_DATASET</span> <br />
+                      <span className="text-navy-400">Value:</span> <span className="text-gold-400">production</span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-navy-300 leading-relaxed">
+                    Vercel will automatically read these variables at build-time, connecting your gorgeous frontend perfectly to your live Sanity content data!
+                  </p>
+                </div>
               </div>
             </div>
           )}
