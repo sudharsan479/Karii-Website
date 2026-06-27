@@ -17,7 +17,9 @@ async function testConnection() {
     await getDocFromServer(doc(db, "test", "connection"));
   } catch (error) {
     if (error instanceof Error && error.message.includes("the client is offline")) {
-      console.error("Please check your Firebase configuration or connection.");
+      console.warn("Please check your Firebase configuration or connection. Operating in offline/cached mode.");
+    } else {
+      console.warn("Firestore connection status:", error instanceof Error ? error.message : error);
     }
   }
 }

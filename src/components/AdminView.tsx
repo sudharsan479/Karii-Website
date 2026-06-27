@@ -1817,21 +1817,34 @@ export default function AdminView({
                   <div className="flex items-center space-x-2">
                     <div className="w-5 h-5 bg-gold-500/10 text-gold-400 rounded-full flex items-center justify-center text-xs font-bold">2</div>
                     <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-gold-300">
-                      No Local Runs: Host your CMS on Sanity's Cloud
+                      Deploy Your CMS Studio (No Terminal Needed!)
                     </h4>
                   </div>
                   <p className="text-[11px] text-navy-300 leading-relaxed">
-                    You do not need to run Sanity locally! Sanity provides completely free, high-performance web hosting for your Sanity Studio on their global cloud CDN.
+                    You do not need to run Sanity locally or type any commands! You can host your CMS Studio entirely through <strong className="text-gold-200">Vercel's Web Dashboard</strong> or <strong className="text-gold-200">GitHub integration</strong>.
                   </p>
-                  <p className="text-[11px] text-navy-300 leading-relaxed">
-                    To deploy your CMS Studio to the web with zero server setup, open your local terminal, navigate to the <code className="bg-navy-950 px-1 text-gold-300">/studio</code> folder, and run:
-                  </p>
-                  <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 font-mono text-xs text-gold-400">
-                    npx sanity deploy
+                  
+                  <div className="border-t border-navy-900 pt-3 space-y-3">
+                    <h5 className="text-[11px] font-mono font-bold text-gold-400">Method A: Vercel GUI Deployment (Easiest)</h5>
+                    <ol className="list-decimal pl-5 text-[11px] text-navy-300 space-y-1.5">
+                      <li>Push your codebase to a private/public <strong className="text-gold-200">GitHub Repository</strong>.</li>
+                      <li>Go to your <a href="https://vercel.com" target="_blank" rel="noreferrer" className="text-gold-400 hover:underline">Vercel Dashboard</a> and click <span className="font-bold text-gold-200">Add New &gt; Project</span>.</li>
+                      <li>Import your GitHub repository.</li>
+                      <li>In the project settings, locate <span className="font-bold text-gold-200">Root Directory</span> and click <span className="text-gold-400 font-semibold font-mono">"Edit"</span>. Select the <code className="bg-navy-950 px-1 text-gold-300">studio</code> folder.</li>
+                      <li>Vercel will automatically detect that this is a Sanity.io project and set the build settings automatically!</li>
+                      <li>Click <span className="px-1.5 py-0.5 bg-gold-500/10 text-gold-400 rounded text-[10px] font-bold">Deploy</span>. Vercel will build and host your studio live at a <code className="text-gold-300">.vercel.app</code> URL.</li>
+                    </ol>
                   </div>
-                  <p className="text-[11px] text-navy-300 leading-relaxed">
-                    Enter a subdomain (e.g. <code className="bg-navy-950 px-1 text-gold-300">vividspark</code>) and your CMS will immediately compile and launch live at <span className="text-gold-300 font-semibold font-mono">https://vividspark.sanity.studio</span>. You can log in and manage your content securely from any browser, on any device!
-                  </p>
+
+                  <div className="border-t border-navy-900 pt-3 space-y-2">
+                    <h5 className="text-[11px] font-mono font-bold text-gold-400">Method B: Command-line Option (If preferred)</h5>
+                    <p className="text-[11px] text-navy-300">
+                      If you ever change your mind and want to use Sanity's own cloud hosting, you can deploy in one command by opening your terminal in the <code className="bg-navy-950 px-1 text-gold-300">/studio</code> folder and running:
+                    </p>
+                    <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 font-mono text-xs text-gold-400">
+                      npx sanity deploy
+                    </div>
+                  </div>
                 </div>
 
                 {/* Step 3: Vercel Connection */}
