@@ -463,7 +463,7 @@ export const fallbackShop: ShopItem[] = [
 export async function getSettings(): Promise<GlobalSettings> {
   if (isSanityConfigured()) {
     const data = await getSanitySettings();
-    if (data) return data;
+    if (data && data.heroTitle) return data;
   }
   try {
     const sDoc = await getDoc(doc(db, "settings", "global"));
@@ -483,7 +483,7 @@ export async function saveSettings(settings: GlobalSettings): Promise<void> {
 export async function getServices(): Promise<ServiceItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityServices();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "services"));
@@ -511,7 +511,7 @@ export async function deleteService(id: string): Promise<void> {
 export async function getPortfolio(): Promise<PortfolioItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityPortfolio();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "portfolio"));
@@ -539,7 +539,7 @@ export async function deletePortfolioItem(id: string): Promise<void> {
 export async function getTestimonials(): Promise<TestimonialItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityTestimonials();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "testimonials"));
@@ -567,7 +567,7 @@ export async function deleteTestimonial(id: string): Promise<void> {
 export async function getFAQs(): Promise<FAQItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityFAQs();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "faq"));
@@ -595,7 +595,7 @@ export async function deleteFAQ(id: string): Promise<void> {
 export async function getWiki(): Promise<WikiItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityWiki();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "wiki"));
@@ -623,7 +623,7 @@ export async function deleteWikiItem(id: string): Promise<void> {
 export async function getShop(): Promise<ShopItem[]> {
   if (isSanityConfigured()) {
     const data = await getSanityShop();
-    if (data) return data;
+    if (data && data.length > 0) return data;
   }
   try {
     const qSnap = await getDocs(collection(db, "shop"));

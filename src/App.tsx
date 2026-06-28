@@ -33,7 +33,8 @@ import {
   getTestimonials,
   getFAQs,
   getWiki,
-  getShop
+  getShop,
+  seedFirestoreDatabase
 } from "./dbHelper";
 
 export default function App() {
@@ -102,6 +103,9 @@ export default function App() {
   // Fetch data function
   const loadAllData = async () => {
     try {
+      // Automatically soft-seed the Firestore collections if settings are unseeded (blank)
+      await seedFirestoreDatabase(false);
+
       const dbSettings = await getSettings();
       const dbServices = await getServices();
       const dbPortfolio = await getPortfolio();
