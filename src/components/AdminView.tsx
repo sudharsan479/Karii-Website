@@ -1808,7 +1808,7 @@ export default function AdminView({
                     <div>• Local Testing: <span className="text-gold-400">http://localhost:3000</span></div>
                     <div>• Dev Sandbox: <span className="text-gold-400">https://ais-dev-g7kqgf3ffh5kculqzwrb3t-1056778540653.asia-southeast1.run.app</span></div>
                     <div>• Share Preview: <span className="text-gold-400">https://ais-pre-g7kqgf3ffh5kculqzwrb3t-1056778540653.asia-southeast1.run.app</span></div>
-                    <div>• Live Website: <span className="text-gold-400">https://your-website.vercel.app</span> (Replace with your actual Vercel URL)</div>
+                    <div>• Live Frontend: <span className="text-gold-400">https://your-main-website.vercel.app</span> <span className="text-emerald-400 font-sans italic">(Add your main frontend URL here, NOT the studio URL)</span></div>
                   </div>
                 </div>
 
@@ -1856,7 +1856,7 @@ export default function AdminView({
                     </h4>
                   </div>
                   <p className="text-[11px] text-navy-300 leading-relaxed">
-                    To connect your main front-end website hosted on Vercel to your Sanity CMS, just add these environment variables to your Vercel project settings:
+                    To connect your main front-end website hosted on Vercel to your Sanity CMS, add these environment variables to your Vercel project settings:
                   </p>
                   <div className="p-3 bg-navy-950/80 rounded-xl border border-gold-500/5 space-y-2 font-mono text-[10px] text-navy-300">
                     <div>
@@ -1868,6 +1868,22 @@ export default function AdminView({
                       <span className="text-navy-400">Value:</span> <span className="text-gold-400">production</span>
                     </div>
                   </div>
+                  
+                  <div className="p-4 bg-navy-900/40 rounded-xl border border-gold-500/10 space-y-2.5 text-[11px] text-navy-300">
+                    <h5 className="font-mono font-bold text-gold-300 text-[10px] uppercase tracking-wider">🔒 Environment Variable Guidelines</h5>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>
+                        <strong className="text-gold-200">Environments:</strong> Check <strong className="text-emerald-400">Production</strong>, <strong className="text-emerald-400">Preview</strong>, and <strong className="text-emerald-400">Development</strong>. This ensures that live builds, PR reviews, and local runs all connect properly.
+                      </li>
+                      <li>
+                        <strong className="text-gold-200">Sensitive Setting:</strong> You can leave this <strong className="text-gold-100">disabled or enabled</strong>. Because these keys begin with <code className="bg-navy-950 px-1 text-gold-400 font-mono text-[10px]">VITE_</code>, they are injected into client-side JS bundles so that the browser can query Sanity. They are public config IDs, not secret keys, so hiding them is optional.
+                      </li>
+                      <li>
+                        <strong className="text-gold-200">Root Directory:</strong> For your main website, keep the Vercel Root Directory set to <code className="bg-navy-950 px-1 text-gold-300">.</code> (the default workspace root). Do NOT set it to <code className="bg-navy-950 px-1 text-gold-300">/studio</code> (as the studio is only for the CMS panel, which should be deployed as its own separate project).
+                      </li>
+                    </ul>
+                  </div>
+                  
                   <p className="text-[11px] text-navy-300 leading-relaxed">
                     Vercel will automatically read these variables at build-time, connecting your gorgeous frontend perfectly to your live Sanity content data!
                   </p>
