@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Dark luxurious radial gradient background -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+    <!-- Elegant gold gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <!-- Subtle gold glow gradient -->
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular background -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="16" />
+
+  <!-- Subtle inner glowing dashed ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#goldGlow)" stroke-width="4" stroke-dasharray="16 12" />
+
+  <!-- Elegant multi-point spark logo (gold star bursts) -->
+  <g transform="translate(256, 256)">
+    <!-- Backing glow -->
+    <path d="M-120,0 Q0,0 0,-120 Q0,0 120,0 Q0,0 0,120 Q0,0 -120,0" fill="#fef08a" opacity="0.2" />
+    
+    <!-- Main gold sparkle -->
+    <path d="M-100,0 Q0,0 0,-100 Q0,0 100,0 Q0,0 0,100 Q0,0 -100,0" fill="url(#goldGrad)" />
+    
+    <!-- Diagonal secondary sparkle (smaller, rotated 45 degrees) -->
+    <path d="M-50,0 Q0,0 0,-50 Q0,0 50,0 Q0,0 0,50 Q0,0 -50,0" fill="url(#goldGrad)" transform="rotate(45)" opacity="0.85" />
+    
+    <!-- Central bright white highlight -->
+    <circle cx="0" cy="0" r="12" fill="#ffffff" />
+  </g>
+</svg>
